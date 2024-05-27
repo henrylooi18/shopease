@@ -1,0 +1,75 @@
+.heading-font {
+    font-family: Bahnschrift, sans-serif;
+    font-size: 24px;
+}
+
+
+.button-font {
+    font-family: Calibri, sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+
+.button-outline-font {
+    font-family: Calibri, sans-serif;
+    font-size: 15px;
+    color: #1F449C;
+}
+
+
+.button-delete-font {
+    font-family: Calibri, sans-serif;
+    font-size: 15px;
+    color: red;
+}
+
+
+.context-font {
+    font-family: inherit, sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+
+.product-font {
+    font-family: Bahnschrift, sans-serif;
+    font-size: 20px;
+}
+
+
+.price-font {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.tagline-font {
+    font-family: Ebrima, sans-serif;
+    font-size: 17px;
+}
+
+
+.product-context-font {
+    font-family: Corbel, sans-serif;
+    font-size: 16px;
+}
+
+
+.description-font {
+    font-family: Bahnschrift, sans-serif;
+    font-size: 16px;
+}
+
+
+.stock-font {
+    font-family: Bahnschrift, sans-serif;
+    font-size: 15px;
+    color: dimgray;
+}
+
+
+.centered-content {
+    text-align: center;
+    margin-top: 20px;
+}

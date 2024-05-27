@@ -1,0 +1,77 @@
+{% extends "navbar.html" %}
+{% block title %}Your Basket{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h4 class="heading-font">Your Basket</h4>
+    <br>
+
+    {% if basket %} <!-- if item(s) present in basket -->
+    <p class="context-font">Want to shop for more?</p>
+    <a class="btn btn-primary button-font" href="/" style="background-color: #1F449C"><strong>SHOP MORE</strong></a>
+    <br><br>
+    <div class="row">
+
+        {% for item in basket %}
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: aliceblue;">
+                <div class="card-body">
+                    <h5 class="card-title; product-font"><strong>{{ item.product.product_name }}</strong></h5>
+                    <hr>
+                    <h5 class="card-text" style="color:darkslategrey">£{{ '%.2f'|format(item.product.price) }}</h5>
+                    <br>
+
+                    <!-- quantity input for item -->
+                    <form action="/editbasket" method="POST">
+                        <div class="form-group">
+                            <label for="quantity_{{ item.id }}">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity_{{ item.id }}" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary button-outline-font"><strong>UPDATE</strong></button>
+                    </form>
+
+                    <!-- total price of item -->
+                    <hr>
+                    <h6 class="card-text"><b>Total: </b></h6>
+                    <h5 class="price-font" style="color:darkblue;">£{{ '%.2f'|format(item.product.price * item.quantity) }}</h5>
+
+                    <!-- delete item -->
+                    <hr>
+                    <form action="/deleteitem" method="POST">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <button type="submit" class="btn btn-outline-danger button-delete-font"><strong>DELETE</strong></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <p class="context-font">Your basket is empty. Start shopping now!</p> <!-- if basket is empty -->
+    <a class="btn btn-primary button-font" href="/" style="background-color: #1F449C"><strong>EXPLORE MARKET</strong></a>
+    {% endif %}
+    <hr>
+
+    <!-- payment section -->
+    <div class="card" style="background-color: honeydew">
+        <div class="card-header">
+            <h5 class="heading-font">Payment Hub</h5>
+        </div>
+        <div class="card-body">
+            <p class="context-font">Sub Total (exclusive of shipping tax): £{{ '%.2f'|format(total_price) }}</p>
+            <p class="context-font">Shipping Tax (5%):  £{{ '%.2f'|format(total_price * 0.05) }}</p>
+            <div>
+                <hr>
+                <h6 class="context-font"><b>PAYMENT TO BE MADE:</b></h6>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <h5 class="price-font" style="color: seagreen; margin: 0;">£{{ '%.2f'|format((total_price) + (total_price * 0.05)) }}</h5>
+                    <button type="button" class="btn btn-success button-font" onclick="confirmPurchase()"><strong>PURCHASE NOW</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+{% endblock %}

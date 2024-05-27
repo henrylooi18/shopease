@@ -1,0 +1,37 @@
+{% extends "navbar.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<form action="#" method="POST">
+    <br>
+    <h3 align="center" class="heading-font">Log In To Your Account</h3>
+
+    <div class="form-group">
+        <p class="product-context-font">Email Address:</p>
+        <input type="email"
+               class="form-control"
+               id="email"
+               name="email"
+               placeholder="Your email"
+               required>
+    </div>
+
+    <div class="form-group">
+        <p class="product-context-font">Password:</p>
+        <input type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               placeholder="Your password"
+               required>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary; button-font" style="background-color: #1F449C"><strong>LOG IN</strong></button>
+    </div>
+</form>
+<div class="centered-content">
+    <p class="context-font">Don't have an account?</p>
+    <a class="btn btn-primary button-font" href="/register/" style="background-color: #1F449C"><strong>REGISTER NOW</strong></a>
+</div>
+{% endblock %}

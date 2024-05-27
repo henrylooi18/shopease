@@ -1,0 +1,21 @@
+{% extends "navbar.html" %}
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-auto mb-3">
+            <h4 class="heading-font">Personal Details</h4>
+            <br>
+            <div class="card" style="width: 35rem;">
+                <div class="card-body">
+                    <p class="card-text context-font"><strong>First Name: </strong>{{ userDetails.first_name }}</p>
+                    <p class="card-text context-font"><strong>Last Name: </strong>{{ userDetails.last_name }}</p>
+                    <p class="card-text context-font"><strong>Email: </strong>{{ userDetails.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

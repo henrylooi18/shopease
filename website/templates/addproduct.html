@@ -1,0 +1,66 @@
+{% extends "navbar.html" %}
+{% block title %}Sell Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-auto mb-3">
+            <form action="#" method="POST">
+                <h4 class="heading-font">Sell A Product</h4>
+                <br>
+                <div class="card" style="background-color: aliceblue; width: 35rem;">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="product-context-font" for="productName"><strong>Product Name:</strong></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="productName"
+                                   name="productName"
+                                   placeholder="Apple iPhone..."
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="product-context-font" for="description"><strong>Description:</strong></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="description"
+                                   name="description"
+                                   placeholder="White colour, 64GB..."
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="product-context-font" for="price"><strong>Price (£):</strong></label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="price"
+                                   name="price"
+                                   step="0.01"
+                                   min="0.01"
+                                   pattern="^\d+(\.\d{1,2})?$"
+                                   placeholder="599.99..."
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="product-context-font" for="stock"><strong>Stock(s):</strong></label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="stock"
+                                   name="stock"
+                                   min="1"
+                                   placeholder="20..."
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary; button-font" style="background-color: #1F449C"><strong>ADD PRODUCT</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "navbar.html" %}
+{% block title %}Explore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h4 class="heading-font">Products On Sale</h4>
+    <br>
+    <p class="context-font">Want to sell a product on the market instead?</p>
+    <a class="btn btn-primary button-font" href="/addproduct" style="background-color: #1F449C"><strong>SELL A PRODUCT</strong></a>
+    <br>
+    <br>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: aliceblue;"> <!-- card for product -->
+                <div class="card-body">
+                    <h5 class="card-title; product-font"><strong>{{ product.product_name }}</strong></h5>
+                    <span class="like-icon" data-product="{{ product.id }}" onclick="like({{product.id}})">
+                        {% if product.is_liked_by_current_user %}
+                            <i class="fas fa-heart"></i>
+                        {% else %}
+                            <i class="far fa-heart"></i>
+                        {% endif %}
+                    </span>
+                    <hr>
+                    <h7 class="card-subtitle mb-2 text-muted; description-font" style="font-weight: bold">Description: </h7>
+                    <p class="text-muted; description-font">{{ product.description }}</p>
+                    <br>
+                    <h5 class="card-text; price-font" style="color: darkblue">£{{ '%.2f'|format(product.price) }}</h5>
+                    <hr>
+                    <h7 class="card-subtitle mb-2 text-muted; stock-font" style="font-size:small; font-weight: bold">Stock(s) left: {{ product.stock }}</h7>
+                    <br>
+
+                    {% if product.stock > 0 %} <!-- if product not out of stock -->
+                    <form action="/addintobasket" method="POST"> <!-- form for adding into basket -->
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <select class="form-control" id="quantity" name="quantity">
+                                {% set max_quantity = product.stock %}
+
+                                {% for i in range(1, max_quantity + 1) %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary button-outline-font" style="outline-color: #1F449C"><strong>ADD TO BASKET</strong></button>
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                    </form>
+
+                    {% else %} <!-- if item is out of stock -->
+                    <p class="card-text text-danger"><strong>OUT OF STOCK</strong></p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<br>
+{% endblock %}
